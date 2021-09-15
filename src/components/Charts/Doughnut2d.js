@@ -5,3 +5,4 @@ const Doughnut2d = () => {
 };
 
 export default Doughnut2d;
+

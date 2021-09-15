@@ -1,10 +1,48 @@
-import React from 'react';
-import { GithubContext } from '../context/context';
+import React, {useContext} from 'react';
+import {GithubContext} from '../context/context';
 import styled from 'styled-components';
-import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
+import {MdBusiness, MdLocationOn, MdLink} from 'react-icons/md';
 const Card = () => {
-  return <h2>card component</h2>;
+  const {githubUser} = useContext(GithubContext);
+  const {
+    avatar_url: profile,
+    location,
+    html_url: homepage,
+    blog,
+    bio,
+    twitter_username,
+    company,
+    name,
+  } = githubUser;
+  return (
+    <Wrapper>
+      <header>
+        <img src={profile} alt={name} />
+        <div>
+          <h4>{name}</h4>
+          <p>@{twitter_username || ''}</p>
+        </div>
+        <a href={profile}>follow</a>
+      </header>
+      <p className="bio">{bio}</p>
+      <div className="links">
+        <p>
+          <MdBusiness />
+          {company}
+        </p>
+        <p>
+          <MdLocationOn />
+          {location || 'earth'}
+        </p>
+        <a href={`https://${blog}`}>
+          <MdLink />
+          {blog}
+        </a>
+      </div>
+    </Wrapper>
+  );
 };
+
 const Wrapper = styled.article`
   background: var(--clr-white);
   padding: 1.5rem 2rem;
@@ -74,13 +112,13 @@ const Wrapper = styled.article`
       }
     }
     a {
-      color: var(--clr-primary-5);
-      transition: var(--transition);
+      color: var(—clr-primary-5);
+      transition: var(—transition);
       svg {
-        color: var(--clr-grey-5);
+        color: var(—clr-grey-5);
       }
       &:hover {
-        color: var(--clr-primary-3);
+        color: var(—clr-primary-3);
       }
     }
   }
