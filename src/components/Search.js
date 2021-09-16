@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import {MdSearch} from 'react-icons/md';
 import {GithubContext} from '../context/context';
 const Search = () => {
-  const {request,error} = useContext(GithubContext);
-  const {remaining,limit}=request
   const [user, setUser] = useState('');
+  const {request, error, requestUser, loading} = useContext(GithubContext);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (user) {
+      requestUser(user);
       setUser('');
     }
   };
@@ -17,15 +17,15 @@ const Search = () => {
   const handleChange = (e) => {
     setUser(e.target.value);
   };
-  console.log(error,"error")
+
   return (
     <section className="section">
       <Wrapper className="section-center">
-        {error.show && <ErrorWrapper>
-          <p>
-            {error.msg}  
-          </p>
-        </ErrorWrapper> }
+        {error.show && (
+          <ErrorWrapper>
+            <p>{error.msg}</p>
+          </ErrorWrapper>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch />
@@ -35,10 +35,10 @@ const Search = () => {
               type="text"
               placeholder="enter github user"
             />
-            {remaining >0 && <button type="submit">search</button>}
+            {request > 0 && !loading && <button type="submit">search</button>}
           </div>
         </form>
-        <h3>requests: {remaining} / {limit}</h3>
+        <h3>requests: {request} / 60</h3>
       </Wrapper>
     </section>
   );
@@ -126,3 +126,6 @@ const ErrorWrapper = styled.article`
   }
 `;
 export default Search;
+
+
+

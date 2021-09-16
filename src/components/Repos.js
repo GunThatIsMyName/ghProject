@@ -35,7 +35,6 @@ const Repos = () => {
   const mostFork = Object.values(stars).sort((a,b)=>b.forks-a.forks).map((item)=>{
     return {...item,value:item.forks}
   }).slice(0,5)
-  console.log(mostStars,"most")
   return (
     <section className="section">
       <Wrapper className="section-center">
