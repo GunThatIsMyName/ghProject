@@ -8,8 +8,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 //dev-ugbnva-7.us.auth0.com
 //rKhQlswG0KBd5fpYK7DqEs1HIVejONiW
-const Domain= process.env.REACT_APP_DOMAIN
-const CLientId =process.env.REACT_APP_CLIENT_ID;
+const Domain= 'dev-ugbnva-7.us.auth0.com'
+const CLientId ='rKhQlswG0KBd5fpYK7DqEs1HIVejONiW';
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
