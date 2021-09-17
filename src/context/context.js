@@ -22,10 +22,6 @@ const GithubProvider = ({ children }) => {
       if (data) {
         const {login,followers_url}=data;
         setGithubUser(data);
-        // const {data:reposData} = await axios(`${rootUrl}/users/${login}/repos?per_page=100`);
-        // setRepos(reposData)
-        // const {data:followersData} = await axios(`${followers_url}?per_page=100`);
-        // setFollowers(followersData)
         await Promise.allSettled([
           axios(`${rootUrl}/users/${login}/repos?per_page=100`),
           axios(`${followers_url}?per_page=100`)
